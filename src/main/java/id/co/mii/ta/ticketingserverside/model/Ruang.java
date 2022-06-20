@@ -31,7 +31,7 @@ public class Ruang {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
-    String keterangan;
+    String lantai;
     
     @OneToMany(mappedBy = "ruang")
     Set<FasilitasRuang> fasilitasRuang;

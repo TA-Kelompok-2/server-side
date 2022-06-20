@@ -34,7 +34,7 @@ public class User {
     
     @Id
     Long id;
-    String email;
+    String username;
     String password;
     
     @OneToOne(cascade = CascadeType.ALL)
