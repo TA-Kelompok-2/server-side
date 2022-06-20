@@ -5,6 +5,8 @@
  */
 package id.co.mii.ta.ticketingserverside.repository;
 
+import id.co.mii.ta.ticketingserverside.model.Ruang;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author Fathullah
  */
 @Repository
-public class RuangRepository {
+public interface RuangRepository extends JpaRepository<Ruang, Long> {
     
 }
