@@ -7,15 +7,9 @@ package id.co.mii.ta.ticketingserverside.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,25 +23,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tb_employee")
-public class Employee {
+@Table(name = "tb_status")
+public class Status {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String firstName;
-    String lastName;
-
-    @Column(nullable = false, unique = true)
-    String email;
-    String phoneNumber;
-
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private User user;
+    String name;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "status")
     private List<Request> requests;
 
 }
