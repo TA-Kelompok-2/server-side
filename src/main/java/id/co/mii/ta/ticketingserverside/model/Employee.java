@@ -35,8 +35,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String firstName;
-    String lastName;
+    String name;
 
     @Column(nullable = false, unique = true)
     String email;
