@@ -8,6 +8,7 @@ package id.co.mii.ta.ticketingserverside.model;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,8 +30,13 @@ public class History {
     String keterangan;
     LocalDateTime date;
     
+    @ManyToOne
     private Request request;
+    
+    @ManyToOne
     private Employee employee;
+    
+    @ManyToOne
     private Status status;
     
     
