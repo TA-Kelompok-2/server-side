@@ -43,6 +43,9 @@ public class Request {
     @ManyToOne
     private Status status;
 
+    @ManyToOne
+    private FasilitasRuang fasilitasRuang;
+    
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "request")
     private List<History> history;

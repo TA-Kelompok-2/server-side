@@ -5,10 +5,13 @@
  */
 package id.co.mii.ta.ticketingserverside.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,4 +38,9 @@ public class FasilitasRuang {
     @ManyToOne
     @JoinColumn(name = "id_ruang")
     Ruang ruang;
+    
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "fasilitasRuang")
+    private List<Request> requests;
+    
 }
