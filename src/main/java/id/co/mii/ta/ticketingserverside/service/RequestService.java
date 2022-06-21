@@ -39,7 +39,7 @@ public class RequestService {
     
     public Request getById(Long id) {
         return requestRepository.findById(id).orElseThrow(()
-                -> new ResponseStatusException(HttpStatus.NOT_FOUND, "role Not Found"));
+                -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Request Not Found"));
     }
     
     public Request create(Request request) {
