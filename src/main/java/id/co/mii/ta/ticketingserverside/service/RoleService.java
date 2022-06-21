@@ -57,8 +57,8 @@ public class RoleService {
         return role;
     }
 
-    public Role findRoleName(String name) {
-        return roleRepository.findByName(name).orElseThrow(()
+    public Role getRoleName(String name) {
+        return roleRepository.getByName(name).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Role name not found"));
     }
 

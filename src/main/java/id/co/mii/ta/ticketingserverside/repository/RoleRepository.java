@@ -6,6 +6,7 @@
 package id.co.mii.ta.ticketingserverside.repository;
 
 import id.co.mii.ta.ticketingserverside.model.Role;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

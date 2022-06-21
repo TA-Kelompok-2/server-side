@@ -48,12 +48,13 @@ public class EmployeeService {
     public Employee create(EmployeeRequest employeeRequest) {
         Employee employee = modelMapper.map(employeeRequest, Employee.class);
         User user = modelMapper.map(employeeRequest, User.class);
-        user.setEmployee(employee);
-        user.setPassword(employeeRequest.getPassword());
 
         List<Role> role = new ArrayList<>();
 //        role.add(roleService.getById(2L));
         role.add(roleService.getById(employeeRequest.getRoles()));
+        
+        user.setEmployee(employee);
+        user.setPassword(employeeRequest.getPassword());
         user.setRoles(role);
         employee.setUser(user);
 
