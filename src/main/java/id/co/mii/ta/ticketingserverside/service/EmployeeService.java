@@ -52,7 +52,8 @@ public class EmployeeService {
         user.setPassword(employeeRequest.getPassword());
 
         List<Role> role = new ArrayList<>();
-        role.add(roleService.getById(2L));
+//        role.add(roleService.getById(2L));
+        role.add(roleService.getById(employeeRequest.getRoles()));
         user.setRoles(role);
         employee.setUser(user);
 
