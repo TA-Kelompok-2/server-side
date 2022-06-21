@@ -11,6 +11,7 @@ public class TicketingServerSideApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TicketingServerSideApplication.class, args);
+        System.out.println("Server is running....");
     }
 
     @Bean

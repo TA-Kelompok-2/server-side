@@ -5,8 +5,8 @@
  */
 package id.co.mii.ta.ticketingserverside.controller;
 
-import id.co.mii.ta.ticketingserverside.model.Request;
-import id.co.mii.ta.ticketingserverside.service.RequestService;
+import id.co.mii.ta.ticketingserverside.model.Ruang;
+import id.co.mii.ta.ticketingserverside.service.RuangService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,46 +19,44 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 /**
  *
  * @author Fathullah
  */
-
 @RestController
-@RequestMapping("/request")
-public class RequestController {
+@RequestMapping("/ruang")
+public class RuangController {
     
-    private RequestService requestService;
+    private RuangService ruangService;
 
     @Autowired
-    public RequestController(RequestService requestService) {
-        this.requestService = requestService;
+    public RuangController(RuangService ruangService) {
+        this.ruangService = ruangService;
     }
     
     @GetMapping
-    public ResponseEntity<List<Request>> getAll() {
-        return new ResponseEntity(requestService.getAll(), HttpStatus.OK);
+    public ResponseEntity<List<Ruang>> getAll() {
+        return new ResponseEntity(ruangService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Request> getById(@PathVariable Long id) {
-        return new ResponseEntity(requestService.getById(id), HttpStatus.OK);
+    public ResponseEntity<Ruang> getById(@PathVariable Long id) {
+        return new ResponseEntity(ruangService.getById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Request> create(@RequestBody Request request) {
-        return new ResponseEntity(requestService.create(request), HttpStatus.CREATED);
+    public ResponseEntity<Ruang> create(@RequestBody Ruang ruang) {
+        return new ResponseEntity(ruangService.create(ruang), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Request> update(@PathVariable("id") Long id, @RequestBody Request request) {
-        return new ResponseEntity(requestService.update(id, request), HttpStatus.CREATED);
+    public ResponseEntity<Ruang> update(@PathVariable("id") Long id, @RequestBody Ruang ruang) {
+        return new ResponseEntity(ruangService.update(id, ruang), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Request> delete(@PathVariable Long id) {
-        return new ResponseEntity(requestService.delete(id), HttpStatus.OK);
+    public ResponseEntity<Ruang> delete(@PathVariable Long id) {
+        return new ResponseEntity(ruangService.delete(id), HttpStatus.OK);
     }
 
 }

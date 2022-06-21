@@ -5,6 +5,8 @@
  */
 package id.co.mii.ta.ticketingserverside.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,6 +35,7 @@ public class Ruang {
     String name;
     String lantai;
     
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "ruang")
     Set<FasilitasRuang> fasilitasRuang;
 }

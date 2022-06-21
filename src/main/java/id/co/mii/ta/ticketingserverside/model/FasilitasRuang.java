@@ -27,20 +27,18 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "tb_fasilitas_ruang")
 public class FasilitasRuang {
-    
+
     @Id
     Long id;
-    
-    @ManyToOne
-    @JoinColumn(name = "id_fasilitas")
-    Fasilitas fasilitas;
 
     @ManyToOne
-    @JoinColumn(name = "id_ruang")
-    Ruang ruang;
-    
+    private Fasilitas fasilitas;
+
+    @ManyToOne
+    private Ruang ruang;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "fasilitasRuang")
     private List<Request> requests;
-    
+
 }

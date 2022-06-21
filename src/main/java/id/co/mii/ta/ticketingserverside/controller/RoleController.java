@@ -5,8 +5,8 @@
  */
 package id.co.mii.ta.ticketingserverside.controller;
 
-import id.co.mii.ta.ticketingserverside.model.Request;
-import id.co.mii.ta.ticketingserverside.service.RequestService;
+import id.co.mii.ta.ticketingserverside.model.Role;
+import id.co.mii.ta.ticketingserverside.service.RoleService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,46 +19,44 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 /**
  *
  * @author Fathullah
  */
-
 @RestController
-@RequestMapping("/request")
-public class RequestController {
+@RequestMapping("/role")
+public class RoleController {
     
-    private RequestService requestService;
+    private RoleService roleService;
 
     @Autowired
-    public RequestController(RequestService requestService) {
-        this.requestService = requestService;
+    public RoleController(RoleService roleService) {
+        this.roleService = roleService;
     }
     
     @GetMapping
-    public ResponseEntity<List<Request>> getAll() {
-        return new ResponseEntity(requestService.getAll(), HttpStatus.OK);
+    public ResponseEntity<List<Role>> getAll() {
+        return new ResponseEntity(roleService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Request> getById(@PathVariable Long id) {
-        return new ResponseEntity(requestService.getById(id), HttpStatus.OK);
+    public ResponseEntity<Role> getById(@PathVariable Long id) {
+        return new ResponseEntity(roleService.getById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Request> create(@RequestBody Request request) {
-        return new ResponseEntity(requestService.create(request), HttpStatus.CREATED);
+    public ResponseEntity<Role> create(@RequestBody Role role) {
+        return new ResponseEntity(roleService.create(role), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Request> update(@PathVariable("id") Long id, @RequestBody Request request) {
-        return new ResponseEntity(requestService.update(id, request), HttpStatus.CREATED);
+    public ResponseEntity<Role> update(@PathVariable("id") Long id, @RequestBody Role role) {
+        return new ResponseEntity(roleService.update(id, role), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Request> delete(@PathVariable Long id) {
-        return new ResponseEntity(requestService.delete(id), HttpStatus.OK);
+    public ResponseEntity<Role> delete(@PathVariable Long id) {
+        return new ResponseEntity(roleService.delete(id), HttpStatus.OK);
     }
 
 }

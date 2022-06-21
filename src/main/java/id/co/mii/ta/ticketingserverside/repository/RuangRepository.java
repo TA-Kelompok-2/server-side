@@ -6,6 +6,7 @@
 package id.co.mii.ta.ticketingserverside.repository;
 
 import id.co.mii.ta.ticketingserverside.model.Ruang;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +16,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RuangRepository extends JpaRepository<Ruang, Long> {
-    
+
+    Optional<Ruang> findByName(String name);
 }

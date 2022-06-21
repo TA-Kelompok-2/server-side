@@ -6,6 +6,7 @@
 package id.co.mii.ta.ticketingserverside.repository;
 
 import id.co.mii.ta.ticketingserverside.model.Fasilitas;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +16,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface FasilitasRepository extends JpaRepository<Fasilitas, Long> {
-    
+
+    Optional<Fasilitas> findByName(String name);
 }
