@@ -5,7 +5,7 @@
  */
 package id.co.mii.ta.ticketingserverside.repository;
 
-import id.co.mii.ta.ticketingserverside.model.Fasilitas;
+import id.co.mii.ta.ticketingserverside.model.FasilitasRuang;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author Fathullah
  */
 @Repository
-public interface FasilitasRuangRepository extends JpaRepository<Fasilitas, Long> {
+public interface FasilitasRuangRepository extends JpaRepository<FasilitasRuang, Long> {
     
 }
