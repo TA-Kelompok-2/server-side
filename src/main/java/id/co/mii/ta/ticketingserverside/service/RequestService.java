@@ -15,6 +15,7 @@ import id.co.mii.ta.ticketingserverside.repository.EmployeeRepository;
 import id.co.mii.ta.ticketingserverside.repository.FasilitasRuangRepository;
 import id.co.mii.ta.ticketingserverside.repository.HistoryRepository;
 import id.co.mii.ta.ticketingserverside.repository.RequestRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +32,19 @@ public class RequestService {
 
     private RequestRepository requestRepository;
     private ModelMapper modelMapper;
+    private EmployeeService employeeService;
+    private StatusService statusService;
     private HistoryService historyService;
 //    private HistoryRepository historyRepository;
 //    private EmployeeRepository employeeRepository;
 //    private FasilitasRuangRepository fasilitasRuangRepository;
 
     @Autowired
-    public RequestService(RequestRepository requestRepository, ModelMapper modelMapper, HistoryService historyService) {
+    public RequestService(RequestRepository requestRepository, ModelMapper modelMapper, EmployeeService employeeService, StatusService statusService, HistoryService historyService) {
         this.requestRepository = requestRepository;
         this.modelMapper = modelMapper;
+        this.employeeService = employeeService;
+        this.statusService = statusService;
         this.historyService = historyService;
     }
 
@@ -54,21 +59,22 @@ public class RequestService {
 
     public Request create(HistoryRequest historyRequest) {
         Request request = modelMapper.map(historyRequest, Request.class);
-        Employee employee = modelMapper.map(historyRequest, Employee.class);
-        History history = modelMapper.map(historyRequest, History.class);
-        Status status = modelMapper.map(historyRequest, Status.class);
-        FasilitasRuang fasilitasRuang = modelMapper.map(historyRequest, FasilitasRuang.class);
-        
-        request.setFasilitasRuang(fasilitasRuang);
-        request.setStatus(status);
-        
-        history.setDate(historyRequest.getDate());
-        history.setEmployee(employee);
-        history.setKeterangan(historyRequest.getKeterangan());
-        history.setRequest(request);
-        history.setStatus(status);
 
-        return requestRepository.save(request);
+        request.setEmployee(employeeService.getById(historyRequest.getEmployee()));
+        request.setStatus(statusService.getById(historyRequest.getStatus()));
+//        request.setFasilitasRuang(fasilitasRuang);
+
+        Request req = requestRepository.save(request);
+        History history = new History();
+
+        history.setDate(historyRequest.getDate());
+        history.setEmployee(employeeService.getById(historyRequest.getEmployee()));
+        history.setKeterangan(historyRequest.getKeterangan());
+        history.setStatus(statusService.getById(historyRequest.getStatus()));
+        history.setRequest(req);
+        historyService.create(history);
+
+        return req;
     }
 
     public Request update(Long id, Request role) {

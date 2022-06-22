@@ -6,19 +6,23 @@
 package id.co.mii.ta.ticketingserverside.model.dto.request;
 
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Mac
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class HistoryRequest {
 
-    String keterangan;
-    String gambar;
-    String date;
-    Long employee;
-    Long Status;
-    Long fasilitasruang;
+    private String keterangan;
+    private String gambar;
+    private LocalDateTime date = LocalDateTime.now();
+    private Long employee;
+    private Long status;
+    private Long fasilitasRuang;
 }
