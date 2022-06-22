@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,27 +36,32 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-
+    
+    @PreAuthorize("hasAuthority('READ_ADMIN')")
     @GetMapping
     public ResponseEntity<List<Employee>> getAll() {
         return new ResponseEntity(employeeService.getAll(), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('READ_ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getById(@PathVariable Long id) {
         return new ResponseEntity(employeeService.getById(id), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('CREATE_ADMIN')")
     @PostMapping
     public ResponseEntity<Employee> create(@RequestBody EmployeeRequest employee) {
         return new ResponseEntity(employeeService.create(employee), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasAuthority('UPDATE_ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Employee> update(@PathVariable Long id, @RequestBody EmployeeRequest employee) {
         return new ResponseEntity(employeeService.update(id, employee), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasAuthority('DELETE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Employee> delete(@PathVariable Long id) {
         return new ResponseEntity(employeeService.delete(id), HttpStatus.OK);

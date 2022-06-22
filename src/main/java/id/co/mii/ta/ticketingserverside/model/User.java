@@ -36,6 +36,7 @@ public class User {
     Long id;
     String username;
     String password;
+    private Boolean isAccountLocked;
     
     @OneToOne(cascade = CascadeType.ALL)
     @MapsId

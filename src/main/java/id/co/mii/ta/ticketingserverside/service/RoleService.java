@@ -61,5 +61,9 @@ public class RoleService {
         return roleRepository.getByName(name).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Role name not found"));
     }
+    
+    public List<Role> getByNameContain(String name) {
+        return roleRepository.findByNameContaining(name);
+    }
 
 }
