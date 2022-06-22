@@ -53,7 +53,7 @@ public class RequestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Request> update(@PathVariable("id") Long id, @RequestBody Request request) {
+    public ResponseEntity<Request> update(@PathVariable("id") Long id, @RequestBody HistoryRequest request) {
         return new ResponseEntity(requestService.update(id, request), HttpStatus.CREATED);
     }
 
