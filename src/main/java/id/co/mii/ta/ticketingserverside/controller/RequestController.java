@@ -6,6 +6,7 @@
 package id.co.mii.ta.ticketingserverside.controller;
 
 import id.co.mii.ta.ticketingserverside.model.Request;
+import id.co.mii.ta.ticketingserverside.model.dto.request.HistoryRequest;
 import id.co.mii.ta.ticketingserverside.service.RequestService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class RequestController {
     }
 
     @PostMapping
-    public ResponseEntity<Request> create(@RequestBody Request request) {
+    public ResponseEntity<Request> create(@RequestBody HistoryRequest request) {
         return new ResponseEntity(requestService.create(request), HttpStatus.CREATED);
     }
 

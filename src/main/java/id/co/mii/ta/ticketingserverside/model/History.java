@@ -28,7 +28,7 @@ public class History {
     @Id
     Long id;
     String keterangan;
-    LocalDateTime date;
+    String date;
     
     @ManyToOne
     private Request request;
