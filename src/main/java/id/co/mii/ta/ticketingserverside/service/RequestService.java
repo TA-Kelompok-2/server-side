@@ -35,17 +35,19 @@ public class RequestService {
     private EmployeeService employeeService;
     private StatusService statusService;
     private HistoryService historyService;
+    private FasilitasRuangService fasilitasRuangService;
 //    private HistoryRepository historyRepository;
 //    private EmployeeRepository employeeRepository;
 //    private FasilitasRuangRepository fasilitasRuangRepository;
 
     @Autowired
-    public RequestService(RequestRepository requestRepository, ModelMapper modelMapper, EmployeeService employeeService, StatusService statusService, HistoryService historyService) {
+    public RequestService(RequestRepository requestRepository, ModelMapper modelMapper, EmployeeService employeeService, StatusService statusService, HistoryService historyService, FasilitasRuangService fasilitasRuangService) {
         this.requestRepository = requestRepository;
         this.modelMapper = modelMapper;
         this.employeeService = employeeService;
         this.statusService = statusService;
         this.historyService = historyService;
+        this.fasilitasRuangService = fasilitasRuangService;
     }
 
     public List<Request> getAll() {
@@ -62,7 +64,7 @@ public class RequestService {
 
         request.setEmployee(employeeService.getById(historyRequest.getEmployee()));
         request.setStatus(statusService.getById(historyRequest.getStatus()));
-//        request.setFasilitasRuang(fasilitasRuang);
+        request.setFasilitasRuang(fasilitasRuangService.getById(historyRequest.getFasilitasRuang()));
 
         Request req = requestRepository.save(request);
         History history = new History();
