@@ -78,29 +78,29 @@ public class RequestService {
 
         return req;
     }
-
-    public Request update(Long id, HistoryRequest historyRequest) {
-        Request request = getById(id);
-
-        request.setEmployee(employeeService.getById(historyRequest.getEmployee()));
-        request.setStatus(statusService.getById(historyRequest.getStatus()));
-        request.setGambar(historyRequest.getGambar());
-        request.setKeterangan(historyRequest.getKeterangan());
-        request.setFasilitasRuang(fasilitasRuangService.getById(historyRequest.getFasilitasRuang()));
-        request.setId(id);
-        Request req = requestRepository.save(request);
-        
-        // Cari solusi buat ngambil id history biar bisa di update historynya juga, bukan di create baru
-        History history = new History();
-        history.setDate(historyRequest.getDate());
-        history.setEmployee(employeeService.getById(historyRequest.getEmployee()));
-        history.setKeterangan(historyRequest.getKeterangan());
-        history.setStatus(statusService.getById(historyRequest.getStatus()));
-        history.setRequest(req);
-        historyService.create(history);
-
-        return req;
-    }
+//
+//    public Request update(Long id, HistoryRequest historyRequest) {
+//        Request request = getById(id);
+//
+//        request.setEmployee(employeeService.getById(historyRequest.getEmployee()));
+//        request.setStatus(statusService.getById(historyRequest.getStatus()));
+//        request.setGambar(historyRequest.getGambar());
+//        request.setKeterangan(historyRequest.getKeterangan());
+//        request.setFasilitasRuang(fasilitasRuangService.getById(historyRequest.getFasilitasRuang()));
+//        request.setId(id);
+//        Request req = requestRepository.save(request);
+//        
+//        // Cari solusi buat ngambil id history biar bisa di update historynya juga, bukan di create baru
+//        History history = new History();
+//        history.setDate(historyRequest.getDate());
+//        history.setEmployee(employeeService.getById(historyRequest.getEmployee()));
+//        history.setKeterangan(historyRequest.getKeterangan());
+//        history.setStatus(statusService.getById(historyRequest.getStatus()));
+//        history.setRequest(req);
+//        historyService.create(history);
+//
+//        return req;
+//    }
 
     public Request delete(Long id) {
         Request role = getById(id);

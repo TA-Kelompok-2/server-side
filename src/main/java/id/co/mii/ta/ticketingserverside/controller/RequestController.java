@@ -52,10 +52,10 @@ public class RequestController {
         return new ResponseEntity(requestService.create(request), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Request> update(@PathVariable("id") Long id, @RequestBody HistoryRequest request) {
-        return new ResponseEntity(requestService.update(id, request), HttpStatus.CREATED);
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Request> update(@PathVariable("id") Long id, @RequestBody HistoryRequest request) {
+//        return new ResponseEntity(requestService.update(id, request), HttpStatus.CREATED);
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Request> delete(@PathVariable Long id) {
