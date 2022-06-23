@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,16 +38,19 @@ public class RequestController {
         this.requestService = requestService;
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public ResponseEntity<List<Request>> getAll() {
         return new ResponseEntity(requestService.getAll(), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<Request> getById(@PathVariable Long id) {
         return new ResponseEntity(requestService.getById(id), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public ResponseEntity<Request> create(@RequestBody HistoryRequest request) {
         return new ResponseEntity(requestService.create(request), HttpStatus.CREATED);
@@ -57,6 +61,7 @@ public class RequestController {
 //        return new ResponseEntity(requestService.update(id, request), HttpStatus.CREATED);
 //    }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Request> delete(@PathVariable Long id) {
         return new ResponseEntity(requestService.delete(id), HttpStatus.OK);

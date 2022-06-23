@@ -29,10 +29,7 @@ public class AppUserDetail implements UserDetails { // implements user detai sem
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         user.getRoles().forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName().toUpperCase()));
-            role.getPrivilages().forEach(privilage -> {
-                authorities.add(new SimpleGrantedAuthority(privilage.getName().toUpperCase()));
-            });
+            authorities.add(new SimpleGrantedAuthority(role.getName().toUpperCase()));
         });
         return authorities;
     }

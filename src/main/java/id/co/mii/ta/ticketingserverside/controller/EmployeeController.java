@@ -37,31 +37,31 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
     
-    @PreAuthorize("hasAuthority('READ_ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public ResponseEntity<List<Employee>> getAll() {
         return new ResponseEntity(employeeService.getAll(), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('READ_ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getById(@PathVariable Long id) {
         return new ResponseEntity(employeeService.getById(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('CREATE_ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public ResponseEntity<Employee> create(@RequestBody EmployeeRequest employee) {
         return new ResponseEntity(employeeService.create(employee), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAuthority('UPDATE_ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Employee> update(@PathVariable Long id, @RequestBody EmployeeRequest employee) {
         return new ResponseEntity(employeeService.update(id, employee), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAuthority('DELETE_ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Employee> delete(@PathVariable Long id) {
         return new ResponseEntity(employeeService.delete(id), HttpStatus.OK);

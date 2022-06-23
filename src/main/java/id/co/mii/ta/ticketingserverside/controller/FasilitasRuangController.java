@@ -36,27 +36,31 @@ public class FasilitasRuangController {
         this.fasilitasRuangService = fasilitasRuangService;
     }
 
-    @PreAuthorize("hasAuthority('READ_ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public ResponseEntity<List<FasilitasRuang>> getAll() {
         return new ResponseEntity(fasilitasRuangService.getAll(), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<FasilitasRuang> getById(@PathVariable Long id) {
         return new ResponseEntity(fasilitasRuangService.getById(id), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public ResponseEntity<FasilitasRuang> create(@RequestBody FasilitasRuang fasilitasRuang) {
         return new ResponseEntity(fasilitasRuangService.create(fasilitasRuang), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<FasilitasRuang> update(@PathVariable Long id, @RequestBody FasilitasRuang fasilitasRuang) {
         return new ResponseEntity(fasilitasRuangService.update(id, fasilitasRuang), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<FasilitasRuang> delete(@PathVariable Long id) {
         return new ResponseEntity(fasilitasRuangService.delete(id), HttpStatus.OK);

@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,26 +35,31 @@ public class RuangController {
         this.ruangService = ruangService;
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public ResponseEntity<List<Ruang>> getAll() {
         return new ResponseEntity(ruangService.getAll(), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<Ruang> getById(@PathVariable Long id) {
         return new ResponseEntity(ruangService.getById(id), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public ResponseEntity<Ruang> create(@RequestBody Ruang ruang) {
         return new ResponseEntity(ruangService.create(ruang), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Ruang> update(@PathVariable("id") Long id, @RequestBody Ruang ruang) {
         return new ResponseEntity(ruangService.update(id, ruang), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Ruang> delete(@PathVariable Long id) {
         return new ResponseEntity(ruangService.delete(id), HttpStatus.OK);
