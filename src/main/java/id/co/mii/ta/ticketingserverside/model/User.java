@@ -5,6 +5,7 @@
  */
 package id.co.mii.ta.ticketingserverside.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -33,9 +34,9 @@ import lombok.NoArgsConstructor;
 public class User {
     
     @Id
-    Long id;
-    String username;
-    String password;
+    private Long id;
+    private String username;
+    private String password;
     private Boolean isAccountLocked;
     
     @OneToOne(cascade = CascadeType.ALL)
@@ -44,7 +45,6 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Employee employee;
     
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "tb_user_role",

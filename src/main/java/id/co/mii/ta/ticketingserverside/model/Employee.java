@@ -52,5 +52,7 @@ public class Employee {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "employee")
     private List<History> history;
+    
+    
 
 }

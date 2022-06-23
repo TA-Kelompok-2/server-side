@@ -5,6 +5,7 @@
  */
 package id.co.mii.ta.ticketingserverside.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -30,10 +31,11 @@ import lombok.NoArgsConstructor;
 public class Role {
 
     @Id
-    Long id;
-    String name;
+    private Long id;
+    private String name;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<User> users;
     
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
