@@ -97,7 +97,7 @@ public class RequestService {
         history.setKeterangan(historyRequest.getKeterangan());
         history.setStatus(statusService.getById(historyRequest.getStatus()));
         history.setRequest(req);
-    //    historyService.create(history);
+        historyService.create(history);
 
         return req;
     }
