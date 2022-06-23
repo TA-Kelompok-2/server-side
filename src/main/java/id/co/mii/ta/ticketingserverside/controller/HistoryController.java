@@ -6,6 +6,7 @@
 package id.co.mii.ta.ticketingserverside.controller;
 
 import id.co.mii.ta.ticketingserverside.model.History;
+import id.co.mii.ta.ticketingserverside.model.dto.request.HistoryRequest;
 import id.co.mii.ta.ticketingserverside.service.HistoryService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class HistoryController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<History> update(@PathVariable Long id, @RequestBody History history) {
+    public ResponseEntity<History> update(@PathVariable Long id, @RequestBody HistoryRequest history) {
         return new ResponseEntity(historyService.update(id, history), HttpStatus.CREATED);
     }
 

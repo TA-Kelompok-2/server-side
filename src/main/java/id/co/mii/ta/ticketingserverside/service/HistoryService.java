@@ -6,8 +6,10 @@
 package id.co.mii.ta.ticketingserverside.service;
 
 import id.co.mii.ta.ticketingserverside.model.History;
+import id.co.mii.ta.ticketingserverside.model.dto.request.HistoryRequest;
 import id.co.mii.ta.ticketingserverside.repository.HistoryRepository;
 import java.util.List;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -20,11 +22,17 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 public class HistoryService {
 
-   private HistoryRepository historyRepository;
+    private HistoryRepository historyRepository;
+    private ModelMapper modelMapper;
+    private EmployeeService employeeService;
+    private StatusService statusService;
 
     @Autowired
-    public HistoryService(HistoryRepository historyRepository) {
+    public HistoryService(HistoryRepository historyRepository, ModelMapper modelMapper, EmployeeService employeeService, StatusService statusService) {
         this.historyRepository = historyRepository;
+        this.modelMapper = modelMapper;
+        this.employeeService = employeeService;
+        this.statusService = statusService;
     }
 
     public List<History> getAll() {
@@ -40,9 +48,15 @@ public class HistoryService {
         return historyRepository.save(history);
     }
 
-    public History update(Long id, History history) {
-        getById(id);
-        history.setId(id);
+    public History update(Long id, HistoryRequest historyRequest) {
+        History data = getById(id);
+
+        History history = modelMapper.map(historyRequest, History.class);
+        history.setEmployee(employeeService.getById(historyRequest.getEmployee()));
+        history.setStatus(statusService.getById(historyRequest.getStatus()));
+        history.setRequest(data.getRequest());
+  //      history.setId(id);
+
         return historyRepository.save(history);
     }
 
