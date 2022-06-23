@@ -28,12 +28,14 @@ public class EmployeeService {
     private EmployeeRepository employeeRepository;
     private ModelMapper modelMapper;
     private RoleService roleService;
+    private UserService userService;
 
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository, ModelMapper modelMapper, RoleService roleService) {
+    public EmployeeService(EmployeeRepository employeeRepository, ModelMapper modelMapper, RoleService roleService, UserService userService) {
         this.employeeRepository = employeeRepository;
         this.modelMapper = modelMapper;
         this.roleService = roleService;
+        this.userService = userService;
     }
 
     public List<Employee> getAll() {
@@ -76,6 +78,7 @@ public class EmployeeService {
 
         Employee employee = getById(id);
         employeeRepository.delete(employee);
+        userService.delete(id);
         return employee;
     }
 
