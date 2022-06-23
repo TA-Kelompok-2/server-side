@@ -15,6 +15,7 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -29,13 +30,15 @@ public class EmployeeService {
     private ModelMapper modelMapper;
     private RoleService roleService;
     private UserService userService;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository, ModelMapper modelMapper, RoleService roleService, UserService userService) {
+    public EmployeeService(EmployeeRepository employeeRepository, ModelMapper modelMapper, RoleService roleService, UserService userService, PasswordEncoder passwordEncoder) {
         this.employeeRepository = employeeRepository;
         this.modelMapper = modelMapper;
         this.roleService = roleService;
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<Employee> getAll() {
@@ -50,13 +53,13 @@ public class EmployeeService {
     public Employee create(EmployeeRequest employeeRequest) {
         Employee employee = modelMapper.map(employeeRequest, Employee.class);
         User user = modelMapper.map(employeeRequest, User.class);
+        user.setPassword(passwordEncoder.encode(employeeRequest.getPassword()));
 
         List<Role> role = new ArrayList<>();
         role.add(roleService.getById(1L));
 //        role.add(roleService.getById(employeeRequest.getRoles()));
-        
+
         user.setEmployee(employee);
-        user.setPassword(employeeRequest.getPassword());
         user.setRoles(role);
         employee.setUser(user);
 
