@@ -30,11 +30,11 @@ public class Fasilitas {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String name;
-    String keterangan;
+    private Long id;
+    private String name;
+    private String keterangan;
     
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "fasilitas")
-    Set<FasilitasRuang> fasilitasRuang;
+    private Set<FasilitasRuang> fasilitasRuang;
 }

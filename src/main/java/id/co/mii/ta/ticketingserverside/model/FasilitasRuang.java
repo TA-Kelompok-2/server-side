@@ -31,7 +31,7 @@ public class FasilitasRuang {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @ManyToOne
     private Fasilitas fasilitas;

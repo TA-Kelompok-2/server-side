@@ -32,10 +32,10 @@ public class Request {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String keterangan;
-    String gambar;
-    LocalDateTime date;
+    private Long id;
+    private String keterangan;
+    private String gambar;
+    private LocalDateTime date;
 
     @ManyToOne
     private Employee employee;

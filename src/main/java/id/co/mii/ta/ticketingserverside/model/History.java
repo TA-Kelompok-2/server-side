@@ -29,9 +29,9 @@ public class History {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String keterangan;
-    LocalDateTime date;
+    private Long id;
+    private String keterangan;
+    private LocalDateTime date;
 
     @ManyToOne
     private Request request;

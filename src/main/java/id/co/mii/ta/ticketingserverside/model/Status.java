@@ -27,8 +27,8 @@ import lombok.NoArgsConstructor;
 public class Status {
 
     @Id
-    Long id;
-    String name;
+    private Long id;
+    private String name;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "status")

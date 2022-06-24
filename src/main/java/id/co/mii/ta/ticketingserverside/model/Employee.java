@@ -34,12 +34,12 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String name;
+    private Long id;
+    private String name;
 
     @Column(nullable = false, unique = true)
-    String email;
-    String phoneNumber;
+    private String email;
+    private String phoneNumber;
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn

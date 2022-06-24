@@ -31,11 +31,11 @@ public class Ruang {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String name;
-    String lantai;
+    private Long id;
+    private String name;
+    private String lantai;
     
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "ruang")
-    Set<FasilitasRuang> fasilitasRuang;
+    private Set<FasilitasRuang> fasilitasRuang;
 }
