@@ -51,7 +51,7 @@ public class AppUserDetail implements UserDetails { // implements user detai sem
 
     @Override
     public boolean isAccountNonLocked() {
-        return user.getIsAccountLocked();
+        return !user.getIsAccountLocked();
     }
 
     @Override
