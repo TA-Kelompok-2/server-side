@@ -31,7 +31,7 @@ public class RoleService {
         return roleRepository.findAll();
     }
 
-    public Role getById(Long id) {
+    public Role getById(Integer id) {
         return roleRepository.findById(id).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Role not Found")
         );
@@ -46,12 +46,12 @@ public class RoleService {
         return roleRepository.save(role);
     }
 
-    public Role update(Long id, Role role) {
+    public Role update(Integer id, Role role) {
         role.setId(id);
         return roleRepository.save(role);
     }
 
-    public Role delete(Long id) {
+    public Role delete(Integer id) {
         Role role = getById(id);
         roleRepository.delete(role);
         return role;

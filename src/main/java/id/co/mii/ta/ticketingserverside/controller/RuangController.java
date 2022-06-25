@@ -43,7 +43,7 @@ public class RuangController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<Ruang> getById(@PathVariable Long id) {
+    public ResponseEntity<Ruang> getById(@PathVariable Integer id) {
         return new ResponseEntity(ruangService.getById(id), HttpStatus.OK);
     }
 
@@ -55,13 +55,13 @@ public class RuangController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<Ruang> update(@PathVariable("id") Long id, @RequestBody Ruang ruang) {
+    public ResponseEntity<Ruang> update(@PathVariable("id") Integer id, @RequestBody Ruang ruang) {
         return new ResponseEntity(ruangService.update(id, ruang), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Ruang> delete(@PathVariable Long id) {
+    public ResponseEntity<Ruang> delete(@PathVariable Integer id) {
         return new ResponseEntity(ruangService.delete(id), HttpStatus.OK);
     }
 

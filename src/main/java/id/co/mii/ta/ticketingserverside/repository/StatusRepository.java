@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author Fathullah
  */
 @Repository
-public interface StatusRepository extends JpaRepository<Status, Long> {
+public interface StatusRepository extends JpaRepository<Status, Integer> {
     
 }

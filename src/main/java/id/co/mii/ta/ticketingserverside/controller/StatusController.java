@@ -45,7 +45,7 @@ public class StatusController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<Status> getById(@PathVariable Long id) {
+    public ResponseEntity<Status> getById(@PathVariable Integer id) {
         return new ResponseEntity(statusService.getById(id), HttpStatus.OK);
     }
 
@@ -57,13 +57,13 @@ public class StatusController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<Status> update(@PathVariable Long id, @RequestBody Status status) {
+    public ResponseEntity<Status> update(@PathVariable Integer id, @RequestBody Status status) {
         return new ResponseEntity(statusService.update(id, status), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Status> delete(@PathVariable Long id) {
+    public ResponseEntity<Status> delete(@PathVariable Integer id) {
         return new ResponseEntity(statusService.delete(id), HttpStatus.OK);
     }
 

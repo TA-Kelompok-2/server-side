@@ -30,7 +30,7 @@ public class RuangService {
         return ruangRepository.findAll();
     }
 
-    public Ruang getById(Long id) {
+    public Ruang getById(Integer id) {
         return ruangRepository.findById(id).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ruang not Found")
         );
@@ -44,12 +44,12 @@ public class RuangService {
         return ruangRepository.save(ruang);
     }
 
-    public Ruang update(Long id, Ruang ruang) {
+    public Ruang update(Integer id, Ruang ruang) {
         ruang.setId(id);
         return ruangRepository.save(ruang);
     }
 
-    public Ruang delete(Long id) {
+    public Ruang delete(Integer id) {
         Ruang ruang = getById(id);
         ruangRepository.delete(ruang);
         return ruang;

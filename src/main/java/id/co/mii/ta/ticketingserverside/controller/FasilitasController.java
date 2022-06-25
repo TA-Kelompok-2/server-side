@@ -43,7 +43,7 @@ public class FasilitasController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<Fasilitas> getById(@PathVariable Long id) {
+    public ResponseEntity<Fasilitas> getById(@PathVariable Integer id) {
         return new ResponseEntity(fasilitasService.getById(id), HttpStatus.OK);
     }
 
@@ -55,13 +55,13 @@ public class FasilitasController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<Fasilitas> update(@PathVariable("id") Long id, @RequestBody Fasilitas fasilitas) {
+    public ResponseEntity<Fasilitas> update(@PathVariable("id") Integer id, @RequestBody Fasilitas fasilitas) {
         return new ResponseEntity(fasilitasService.update(id, fasilitas), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Fasilitas> delete(@PathVariable Long id) {
+    public ResponseEntity<Fasilitas> delete(@PathVariable Integer id) {
         return new ResponseEntity(fasilitasService.delete(id), HttpStatus.OK);
     }
 

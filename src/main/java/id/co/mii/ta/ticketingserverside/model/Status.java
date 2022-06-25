@@ -8,6 +8,8 @@ package id.co.mii.ta.ticketingserverside.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -27,7 +29,8 @@ import lombok.NoArgsConstructor;
 public class Status {
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

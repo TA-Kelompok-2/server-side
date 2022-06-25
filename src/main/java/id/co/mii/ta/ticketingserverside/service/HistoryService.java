@@ -39,7 +39,7 @@ public class HistoryService {
         return historyRepository.findAll();
     }
 
-    public History getById(Long id) {
+    public History getById(Integer id) {
         return historyRepository.findById(id).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "History Not Found"));
     }
@@ -48,7 +48,7 @@ public class HistoryService {
         return historyRepository.save(history);
     }
 
-    public History update(Long id, HistoryRequest historyRequest) {
+    public History update(Integer id, HistoryRequest historyRequest) {
         History data = getById(id);
 
         History history = modelMapper.map(historyRequest, History.class);
@@ -60,7 +60,7 @@ public class HistoryService {
         return historyRepository.save(history);
     }
 
-    public History delete(Long id) {
+    public History delete(Integer id) {
         History history = getById(id);
         historyRepository.delete(history);
         return history;

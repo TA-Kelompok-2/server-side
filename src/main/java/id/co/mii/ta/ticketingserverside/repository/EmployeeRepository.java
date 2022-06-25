@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
  * @author Mac
  */
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
 //    Optional<Employee> findByFullname(String name);
 //

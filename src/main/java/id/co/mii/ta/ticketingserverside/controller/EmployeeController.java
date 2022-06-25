@@ -45,7 +45,7 @@ public class EmployeeController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<Employee> getById(@PathVariable Long id) {
+    public ResponseEntity<Employee> getById(@PathVariable Integer id) {
         return new ResponseEntity(employeeService.getById(id), HttpStatus.OK);
     }
 
@@ -57,13 +57,13 @@ public class EmployeeController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<Employee> update(@PathVariable Long id, @RequestBody EmployeeRequest employee) {
+    public ResponseEntity<Employee> update(@PathVariable Integer id, @RequestBody EmployeeRequest employee) {
         return new ResponseEntity(employeeService.update(id, employee), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Employee> delete(@PathVariable Long id) {
+    public ResponseEntity<Employee> delete(@PathVariable Integer id) {
         return new ResponseEntity(employeeService.delete(id), HttpStatus.OK);
     }
 

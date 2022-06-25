@@ -31,7 +31,7 @@ public class FasilitasRuangService {
         return fasilitasRuangRepository.findAll();
     }
 
-    public FasilitasRuang getById(Long id) {
+    public FasilitasRuang getById(Integer id) {
         return fasilitasRuangRepository.findById(id).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Status Not Found"));
     }
@@ -40,13 +40,13 @@ public class FasilitasRuangService {
         return fasilitasRuangRepository.save(fasilitasRuang);
     }
 
-    public FasilitasRuang update(Long id, FasilitasRuang fasilitasRuang) {
+    public FasilitasRuang update(Integer id, FasilitasRuang fasilitasRuang) {
         getById(id);
         fasilitasRuang.setId(id);
         return fasilitasRuangRepository.save(fasilitasRuang);
     }
 
-    public FasilitasRuang delete(Long id) {
+    public FasilitasRuang delete(Integer id) {
         FasilitasRuang fasilitasRuang = getById(id);
         fasilitasRuangRepository.delete(fasilitasRuang);
         return fasilitasRuang;

@@ -7,6 +7,7 @@ package id.co.mii.ta.ticketingserverside.controller;
 
 import id.co.mii.ta.ticketingserverside.model.Request;
 import id.co.mii.ta.ticketingserverside.model.dto.request.HistoryRequest;
+import id.co.mii.ta.ticketingserverside.model.dto.request.RequestDTO;
 import id.co.mii.ta.ticketingserverside.service.RequestService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,24 +47,24 @@ public class RequestController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<Request> getById(@PathVariable Long id) {
+    public ResponseEntity<Request> getById(@PathVariable Integer id) {
         return new ResponseEntity(requestService.getById(id), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
-    public ResponseEntity<Request> create(@RequestBody HistoryRequest request) {
-        return new ResponseEntity(requestService.create(request), HttpStatus.CREATED);
+    public ResponseEntity<Request> create(@RequestBody RequestDTO requestDTO) {
+        return new ResponseEntity(requestService.create(requestDTO), HttpStatus.CREATED);
     }
 
 //    @PutMapping("/{id}")
-//    public ResponseEntity<Request> update(@PathVariable("id") Long id, @RequestBody HistoryRequest request) {
+//    public ResponseEntity<Request> update(@PathVariable("id") Integer id, @RequestBody HistoryRequest request) {
 //        return new ResponseEntity(requestService.update(id, request), HttpStatus.CREATED);
 //    }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Request> delete(@PathVariable Long id) {
+    public ResponseEntity<Request> delete(@PathVariable Integer id) {
         return new ResponseEntity(requestService.delete(id), HttpStatus.OK);
     }
 

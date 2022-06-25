@@ -12,18 +12,16 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author Mac
+ * @author Fathullah
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class HistoryRequest {
-
+public class RequestDTO {
     private String keterangan;
     private String gambar;
     private LocalDateTime date = LocalDateTime.now();
-    private Integer request;
     private Integer employee;
     private Integer status;
-    private Integer fasilitasRuang;
+    private Integer fasilitasruang;
 }

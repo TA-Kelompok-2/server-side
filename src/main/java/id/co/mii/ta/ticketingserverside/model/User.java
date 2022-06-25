@@ -36,7 +36,7 @@ import lombok.NoArgsConstructor;
 public class User {
     
     @Id
-    private Long id;
+    private Integer id;
     private String username;
     private String password;
     private Boolean isAccountLocked;

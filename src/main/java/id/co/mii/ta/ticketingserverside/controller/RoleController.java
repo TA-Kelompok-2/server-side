@@ -43,7 +43,7 @@ public class RoleController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<Role> getById(@PathVariable Long id) {
+    public ResponseEntity<Role> getById(@PathVariable Integer id) {
         return new ResponseEntity(roleService.getById(id), HttpStatus.OK);
     }
 
@@ -55,13 +55,13 @@ public class RoleController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<Role> update(@PathVariable("id") Long id, @RequestBody Role role) {
+    public ResponseEntity<Role> update(@PathVariable("id") Integer id, @RequestBody Role role) {
         return new ResponseEntity(roleService.update(id, role), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Role> delete(@PathVariable Long id) {
+    public ResponseEntity<Role> delete(@PathVariable Integer id) {
         return new ResponseEntity(roleService.delete(id), HttpStatus.OK);
     }
 

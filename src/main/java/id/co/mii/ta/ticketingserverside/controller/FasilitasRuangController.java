@@ -44,7 +44,7 @@ public class FasilitasRuangController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<FasilitasRuang> getById(@PathVariable Long id) {
+    public ResponseEntity<FasilitasRuang> getById(@PathVariable Integer id) {
         return new ResponseEntity(fasilitasRuangService.getById(id), HttpStatus.OK);
     }
 
@@ -56,13 +56,13 @@ public class FasilitasRuangController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<FasilitasRuang> update(@PathVariable Long id, @RequestBody FasilitasRuang fasilitasRuang) {
+    public ResponseEntity<FasilitasRuang> update(@PathVariable Integer id, @RequestBody FasilitasRuang fasilitasRuang) {
         return new ResponseEntity(fasilitasRuangService.update(id, fasilitasRuang), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<FasilitasRuang> delete(@PathVariable Long id) {
+    public ResponseEntity<FasilitasRuang> delete(@PathVariable Integer id) {
         return new ResponseEntity(fasilitasRuangService.delete(id), HttpStatus.OK);
 
     }

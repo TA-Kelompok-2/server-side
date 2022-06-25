@@ -45,7 +45,7 @@ public class HistoryController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<History> getById(@PathVariable Long id) {
+    public ResponseEntity<History> getById(@PathVariable Integer id) {
         return new ResponseEntity(historyService.getById(id), HttpStatus.OK);
     }
 
@@ -57,13 +57,13 @@ public class HistoryController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<History> update(@PathVariable Long id, @RequestBody HistoryRequest history) {
+    public ResponseEntity<History> update(@PathVariable Integer id, @RequestBody HistoryRequest history) {
         return new ResponseEntity(historyService.update(id, history), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<History> delete(@PathVariable Long id) {
+    public ResponseEntity<History> delete(@PathVariable Integer id) {
         return new ResponseEntity(historyService.delete(id), HttpStatus.OK);
 
     }

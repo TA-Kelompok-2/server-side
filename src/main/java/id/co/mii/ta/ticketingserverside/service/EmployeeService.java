@@ -45,7 +45,7 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Employee getById(Long id) {
+    public Employee getById(Integer id) {
         return employeeRepository.findById(id).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee does not exist"));
     }
@@ -56,7 +56,7 @@ public class EmployeeService {
         user.setPassword(passwordEncoder.encode(employeeRequest.getPassword()));
 
         List<Role> role = new ArrayList<>();
-        role.add(roleService.getById(1L));
+        role.add(roleService.getById(1));
 //        role.add(roleService.getById(employeeRequest.getRoles()));
 
         user.setEmployee(employee);
@@ -66,7 +66,7 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public Employee update(Long id, EmployeeRequest employeeRequest) {
+    public Employee update(Integer id, EmployeeRequest employeeRequest) {
         Employee employee = modelMapper.map(employeeRequest, Employee.class);
         User user = modelMapper.map(employeeRequest, User.class);
         employee.setId(id);
@@ -77,7 +77,7 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public Employee delete(Long id) {
+    public Employee delete(Integer id) {
 
         Employee employee = getById(id);
         employeeRepository.delete(employee);

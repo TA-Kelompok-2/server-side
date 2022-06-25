@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author Fathullah
  */
 @Repository
-public interface FasilitasRuangRepository extends JpaRepository<FasilitasRuang, Long> {
+public interface FasilitasRuangRepository extends JpaRepository<FasilitasRuang, Integer> {
     
 }

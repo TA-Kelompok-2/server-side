@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
  * @author Fathullah
  */
 @Repository
-public interface RuangRepository extends JpaRepository<Ruang, Long> {
+public interface RuangRepository extends JpaRepository<Ruang, Integer> {
 
     Optional<Ruang> findByName(String name);
 }

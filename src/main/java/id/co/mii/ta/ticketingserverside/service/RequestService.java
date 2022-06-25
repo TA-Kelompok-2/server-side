@@ -11,6 +11,7 @@ import id.co.mii.ta.ticketingserverside.model.History;
 import id.co.mii.ta.ticketingserverside.model.Request;
 import id.co.mii.ta.ticketingserverside.model.Status;
 import id.co.mii.ta.ticketingserverside.model.dto.request.HistoryRequest;
+import id.co.mii.ta.ticketingserverside.model.dto.request.RequestDTO;
 import id.co.mii.ta.ticketingserverside.repository.EmployeeRepository;
 import id.co.mii.ta.ticketingserverside.repository.FasilitasRuangRepository;
 import id.co.mii.ta.ticketingserverside.repository.HistoryRepository;
@@ -36,9 +37,6 @@ public class RequestService {
     private StatusService statusService;
     private HistoryService historyService;
     private FasilitasRuangService fasilitasRuangService;
-//    private HistoryRepository historyRepository;
-//    private EmployeeRepository employeeRepository;
-//    private FasilitasRuangRepository fasilitasRuangRepository;
 
     @Autowired
     public RequestService(RequestRepository requestRepository, ModelMapper modelMapper, EmployeeService employeeService, StatusService statusService, HistoryService historyService, FasilitasRuangService fasilitasRuangService) {
@@ -54,32 +52,32 @@ public class RequestService {
         return requestRepository.findAll();
     }
 
-    public Request getById(Long id) {
+    public Request getById(Integer id) {
         return requestRepository.findById(id).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Request Not Found"));
     }
 
-    public Request create(HistoryRequest historyRequest) {
+    public Request create(RequestDTO requestDTO) {
         // Set Request
-        Request request = modelMapper.map(historyRequest, Request.class);
-        request.setEmployee(employeeService.getById(historyRequest.getEmployee()));
-        request.setStatus(statusService.getById(historyRequest.getStatus()));
-        request.setFasilitasRuang(fasilitasRuangService.getById(historyRequest.getFasilitasRuang()));
+        Request request = modelMapper.map(requestDTO, Request.class);
+        request.setEmployee(employeeService.getById(requestDTO.getEmployee()));
+        request.setStatus(statusService.getById(requestDTO.getStatus()));
+        request.setFasilitasRuang(fasilitasRuangService.getById(requestDTO.getFasilitasruang()));
         Request req = requestRepository.save(request);
         
         //Set History
         History history = new History();
-        history.setDate(historyRequest.getDate());
-        history.setEmployee(employeeService.getById(historyRequest.getEmployee()));
-        history.setKeterangan(historyRequest.getKeterangan());
-        history.setStatus(statusService.getById(historyRequest.getStatus()));
+        history.setDate(requestDTO.getDate());
+        history.setEmployee(employeeService.getById(requestDTO.getEmployee()));
+        history.setKeterangan(requestDTO.getKeterangan());
+        history.setStatus(statusService.getById(requestDTO.getStatus()));
         history.setRequest(req);
         historyService.create(history);
 
         return req;
     }
 
-    public Request delete(Long id) {
+    public Request delete(Integer id) {
         Request role = getById(id);
         requestRepository.delete(role);
         return role;

@@ -44,7 +44,12 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getById(Long id) {
+    public User getIdByUsername(String name) {
+        return userRepository.findByUsername(name).orElseThrow(()
+                -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Username not found"));
+    }
+    
+    public User getById(Integer id) {
         return userRepository.findById(id).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User does not exist"));
     }
@@ -66,7 +71,7 @@ public class UserService {
         return user;
     }
 
-    public User update(Long id, EmployeeRequest employeeRequest) {
+    public User update(Integer id, EmployeeRequest employeeRequest) {
         User data = getById(id);
         User user = modelMapper.map(employeeRequest, User.class);
 
@@ -77,7 +82,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User delete(Long id) {
+    public User delete(Integer id) {
         User user = getById(id);
         userRepository.delete(user);
         return user;

@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 public class Role {
 
     @Id
-    private Long id;
+    private Integer id;
     private String name;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)

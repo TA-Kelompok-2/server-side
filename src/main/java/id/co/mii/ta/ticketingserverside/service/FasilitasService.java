@@ -31,7 +31,7 @@ public class FasilitasService {
         return fasilitasRepository.findAll();
     }
 
-    public Fasilitas getById(Long id) {
+    public Fasilitas getById(Integer id) {
         return fasilitasRepository.findById(id).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Fasilitas not Found")
         );
@@ -45,12 +45,12 @@ public class FasilitasService {
         return fasilitasRepository.save(fasilitas);
     }
 
-    public Fasilitas update(Long id, Fasilitas fasilitas) {
+    public Fasilitas update(Integer id, Fasilitas fasilitas) {
         fasilitas.setId(id);
         return fasilitasRepository.save(fasilitas);
     }
 
-    public Fasilitas delete(Long id) {
+    public Fasilitas delete(Integer id) {
         Fasilitas fasilitas = getById(id);
         fasilitasRepository.delete(fasilitas);
         return fasilitas;

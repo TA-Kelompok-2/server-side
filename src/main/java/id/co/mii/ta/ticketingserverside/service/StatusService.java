@@ -31,7 +31,7 @@ public class StatusService {
         return statusRepository.findAll();
     }
 
-    public Status getById(Long id) {
+    public Status getById(Integer id) {
         return statusRepository.findById(id).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Status Not Found"));
     }
@@ -40,13 +40,13 @@ public class StatusService {
         return statusRepository.save(status);
     }
 
-    public Status update(Long id, Status status) {
+    public Status update(Integer id, Status status) {
         getById(id);
         status.setId(id);
         return statusRepository.save(status);
     }
 
-    public Status delete(Long id) {
+    public Status delete(Integer id) {
         Status status = getById(id);
         statusRepository.delete(status);
         return status;
