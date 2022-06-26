@@ -5,19 +5,13 @@
  */
 package id.co.mii.ta.ticketingserverside.service;
 
-import id.co.mii.ta.ticketingserverside.model.Employee;
 import id.co.mii.ta.ticketingserverside.model.FasilitasRuang;
 import id.co.mii.ta.ticketingserverside.model.History;
 import id.co.mii.ta.ticketingserverside.model.Request;
-import id.co.mii.ta.ticketingserverside.model.Status;
-import id.co.mii.ta.ticketingserverside.model.dto.request.HistoryRequest;
 import id.co.mii.ta.ticketingserverside.model.dto.request.RequestDTO;
-import id.co.mii.ta.ticketingserverside.repository.EmployeeRepository;
-import id.co.mii.ta.ticketingserverside.repository.FasilitasRuangRepository;
-import id.co.mii.ta.ticketingserverside.repository.HistoryRepository;
 import id.co.mii.ta.ticketingserverside.repository.RequestRepository;
-import java.util.ArrayList;
 import java.util.List;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,24 +23,15 @@ import org.springframework.web.server.ResponseStatusException;
  * @author Fathullah
  */
 @Service
+@AllArgsConstructor
 public class RequestService {
 
-    private RequestRepository requestRepository;
+    RequestRepository requestRepository;
     private ModelMapper modelMapper;
     private EmployeeService employeeService;
     private StatusService statusService;
     private HistoryService historyService;
     private FasilitasRuangService fasilitasRuangService;
-
-    @Autowired
-    public RequestService(RequestRepository requestRepository, ModelMapper modelMapper, EmployeeService employeeService, StatusService statusService, HistoryService historyService, FasilitasRuangService fasilitasRuangService) {
-        this.requestRepository = requestRepository;
-        this.modelMapper = modelMapper;
-        this.employeeService = employeeService;
-        this.statusService = statusService;
-        this.historyService = historyService;
-        this.fasilitasRuangService = fasilitasRuangService;
-    }
 
     public List<Request> getAll() {
         return requestRepository.findAll();
@@ -61,7 +46,7 @@ public class RequestService {
         // Set Request
         Request request = modelMapper.map(requestDTO, Request.class);
         request.setEmployee(employeeService.getById(requestDTO.getEmployee()));
-        request.setStatus(statusService.getById(requestDTO.getStatus()));
+        request.setStatus(statusService.getById(1));
         request.setFasilitasRuang(fasilitasRuangService.getById(requestDTO.getFasilitasruang()));
         Request req = requestRepository.save(request);
         
@@ -70,7 +55,7 @@ public class RequestService {
         history.setDate(requestDTO.getDate());
         history.setEmployee(employeeService.getById(requestDTO.getEmployee()));
         history.setKeterangan(requestDTO.getKeterangan());
-        history.setStatus(statusService.getById(requestDTO.getStatus()));
+        history.setStatus(statusService.getById(1));
         history.setRequest(req);
         historyService.create(history);
 

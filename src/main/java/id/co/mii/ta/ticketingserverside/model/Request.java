@@ -50,7 +50,7 @@ public class Request {
     @JoinColumn(name = "fasilitas_ruang_id")
     private FasilitasRuang fasilitasRuang;
     
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "request")
     private List<History> history;
 
