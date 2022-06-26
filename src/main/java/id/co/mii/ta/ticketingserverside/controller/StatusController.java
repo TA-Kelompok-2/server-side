@@ -37,31 +37,31 @@ public class StatusController {
         this.statusService = statusService;
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
     @GetMapping
     public ResponseEntity<List<Status>> getAll() {
         return new ResponseEntity(statusService.getAll(), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
     @GetMapping("/{id}")
     public ResponseEntity<Status> getById(@PathVariable Integer id) {
         return new ResponseEntity(statusService.getById(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
     @PostMapping
     public ResponseEntity<Status> create(@RequestBody Status status) {
         return new ResponseEntity(statusService.create(status), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
     @PutMapping("/{id}")
     public ResponseEntity<Status> update(@PathVariable Integer id, @RequestBody Status status) {
         return new ResponseEntity(statusService.update(id, status), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Status> delete(@PathVariable Integer id) {
         return new ResponseEntity(statusService.delete(id), HttpStatus.OK);
