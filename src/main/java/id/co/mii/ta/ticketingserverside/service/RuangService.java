@@ -37,10 +37,6 @@ public class RuangService {
     }
 
     public Ruang create(Ruang ruang) {
-
-        if (ruangRepository.findById(ruang.getId()).isPresent()) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Ruang already exist");
-        }
         return ruangRepository.save(ruang);
     }
 

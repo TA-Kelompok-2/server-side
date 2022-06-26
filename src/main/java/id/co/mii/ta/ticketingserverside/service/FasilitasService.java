@@ -38,10 +38,6 @@ public class FasilitasService {
     }
 
     public Fasilitas create(Fasilitas fasilitas) {
-
-        if (fasilitasRepository.findById(fasilitas.getId()).isPresent()) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Fasilitas already exist");
-        }
         return fasilitasRepository.save(fasilitas);
     }
 
