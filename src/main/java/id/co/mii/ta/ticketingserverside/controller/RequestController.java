@@ -57,10 +57,10 @@ public class RequestController {
         return new ResponseEntity(requestService.create(requestDTO), HttpStatus.CREATED);
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Request> update(@PathVariable("id") Integer id, @RequestBody HistoryRequest request) {
-//        return new ResponseEntity(requestService.update(id, request), HttpStatus.CREATED);
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Request> update(@PathVariable("id") Integer id, @RequestBody RequestDTO requestDTO) {
+        return new ResponseEntity(requestService.update(id, requestDTO), HttpStatus.CREATED);
+    }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")

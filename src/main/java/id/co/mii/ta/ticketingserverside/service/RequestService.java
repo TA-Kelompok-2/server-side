@@ -26,7 +26,7 @@ import org.springframework.web.server.ResponseStatusException;
 @AllArgsConstructor
 public class RequestService {
 
-    RequestRepository requestRepository;
+    private RequestRepository requestRepository;
     private ModelMapper modelMapper;
     private EmployeeService employeeService;
     private StatusService statusService;
@@ -49,7 +49,7 @@ public class RequestService {
         request.setStatus(statusService.getById(1));
         request.setFasilitasRuang(fasilitasRuangService.getById(requestDTO.getFasilitasruang()));
         Request req = requestRepository.save(request);
-        
+
         //Set History
         History history = new History();
         history.setDate(requestDTO.getDate());
@@ -60,6 +60,21 @@ public class RequestService {
         historyService.create(history);
 
         return req;
+    }
+
+    public Request update(Integer id, RequestDTO requestDTO) {
+        Request data = getById(id);
+
+        Request request = modelMapper.map(requestDTO, Request.class);
+        request.setEmployee(data.getEmployee());
+        request.setKeterangan(data.getKeterangan());
+        request.setGambar(data.getGambar());
+        request.setStatus(statusService.getById(requestDTO.getStatus()));
+        request.setFasilitasRuang(data.getFasilitasRuang());
+
+        request.setId(id);
+
+        return requestRepository.save(request);
     }
 
     public Request delete(Integer id) {
