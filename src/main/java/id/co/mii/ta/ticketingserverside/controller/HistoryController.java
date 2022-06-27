@@ -37,31 +37,31 @@ public class HistoryController {
         this.historyService = historyService;
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @GetMapping
     public ResponseEntity<List<History>> getAll() {
         return new ResponseEntity(historyService.getAll(), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @GetMapping("/{id}")
     public ResponseEntity<History> getById(@PathVariable Integer id) {
         return new ResponseEntity(historyService.getById(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @PostMapping
     public ResponseEntity<History> create(@RequestBody History history) {
         return new ResponseEntity(historyService.create(history), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @PutMapping("/{id}")
     public ResponseEntity<History> update(@PathVariable Integer id, @RequestBody HistoryRequest history) {
         return new ResponseEntity(historyService.update(id, history), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @DeleteMapping("/{id}")
     public ResponseEntity<History> delete(@PathVariable Integer id) {
         return new ResponseEntity(historyService.delete(id), HttpStatus.OK);
