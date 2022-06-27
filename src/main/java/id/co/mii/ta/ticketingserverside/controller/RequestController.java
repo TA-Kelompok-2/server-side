@@ -68,7 +68,7 @@ public class RequestController {
         return new ResponseEntity(requestService.delete(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @GetMapping("/approved/{id}")
     public ResponseEntity<List<Request>> getByApproval(@PathVariable Integer id) {
         return new ResponseEntity(requestService.getByApproved(id), HttpStatus.OK);
