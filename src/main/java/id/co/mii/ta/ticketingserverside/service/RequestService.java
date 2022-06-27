@@ -69,12 +69,21 @@ public class RequestService {
         request.setEmployee(data.getEmployee());
         request.setKeterangan(data.getKeterangan());
         request.setGambar(data.getGambar());
-        request.setStatus(statusService.getById(requestDTO.getStatus()));
         request.setFasilitasRuang(data.getFasilitasRuang());
-
+        request.setStatus(statusService.getById(requestDTO.getStatus()));
         request.setId(id);
+        Request req = requestRepository.save(request);
 
-        return requestRepository.save(request);
+        //Set History
+        History history = new History();
+        history.setDate(requestDTO.getDate());
+        history.setEmployee(data.getEmployee());
+        history.setKeterangan(data.getKeterangan());
+        history.setStatus(statusService.getById(requestDTO.getStatus()));
+        history.setRequest(data);
+        historyService.create(history);
+
+        return req;
     }
 
     public Request delete(Integer id) {
@@ -83,8 +92,12 @@ public class RequestService {
         return role;
     }
 
-    public List<Request> getByApproved(Integer id) {
-        return requestRepository.findByStatusId(id);
+    public List<Request> getByApproved() {
+        return requestRepository.findByStatusId();
+    }
+
+    public List<Request> getByApprovedadmin() {
+        return requestRepository.findByStatusIdadmin();
     }
 
 }

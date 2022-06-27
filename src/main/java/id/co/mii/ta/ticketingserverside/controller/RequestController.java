@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/request")
+@PreAuthorize("hasAnyRole('ADMIN','ITSUPPORT')")
 public class RequestController {
 
     private RequestService requestService;
@@ -50,14 +51,14 @@ public class RequestController {
         return new ResponseEntity(requestService.getById(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @PostMapping
     public ResponseEntity<Request> create(@RequestBody RequestDTO requestDTO) {
         return new ResponseEntity(requestService.create(requestDTO), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
-    @PutMapping("/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<Request> update(@PathVariable("id") Integer id, @RequestBody RequestDTO requestDTO) {
         return new ResponseEntity(requestService.update(id, requestDTO), HttpStatus.CREATED);
     }
@@ -69,9 +70,14 @@ public class RequestController {
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
-    @GetMapping("/approved/{id}")
-    public ResponseEntity<List<Request>> getByApproval(@PathVariable Integer id) {
-        return new ResponseEntity(requestService.getByApproved(id), HttpStatus.OK);
+    @GetMapping("/approved")
+    public ResponseEntity<List<Request>> getByApproval() {
+        return new ResponseEntity(requestService.getByApproved(), HttpStatus.OK);
+    }
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
+    @GetMapping("/approvedadmin")
+    public ResponseEntity<List<Request>> getByApprovaladmin() {
+        return new ResponseEntity(requestService.getByApprovedadmin(), HttpStatus.OK);
     }
 
 }
