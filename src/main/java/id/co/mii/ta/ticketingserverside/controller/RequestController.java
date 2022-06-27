@@ -27,18 +27,17 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Fathullah
  */
-
 @RestController
 @RequestMapping("/request")
 public class RequestController {
-    
+
     private RequestService requestService;
 
     @Autowired
     public RequestController(RequestService requestService) {
         this.requestService = requestService;
     }
-    
+
     @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @GetMapping
     public ResponseEntity<List<Request>> getAll() {
@@ -67,6 +66,12 @@ public class RequestController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Request> delete(@PathVariable Integer id) {
         return new ResponseEntity(requestService.delete(id), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/approved/{id}")
+    public ResponseEntity<List<Request>> getByApproval(@PathVariable Integer id) {
+        return new ResponseEntity(requestService.getByApproved(id), HttpStatus.OK);
     }
 
 }

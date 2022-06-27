@@ -83,4 +83,8 @@ public class RequestService {
         return role;
     }
 
+    public List<Request> getByApproved(Integer id) {
+        return requestRepository.findByStatusId(id);
+    }
+
 }

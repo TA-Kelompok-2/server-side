@@ -6,7 +6,9 @@
 package id.co.mii.ta.ticketingserverside.repository;
 
 import id.co.mii.ta.ticketingserverside.model.Request;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,5 +17,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Integer> {
-    
+
+    // JPQL by Entity in CLASS
+    @Query(value = "SELECT e FROM Request e WHERE e.status.id=?1")
+    List<Request> findByStatusId(Integer id);
+
 }
