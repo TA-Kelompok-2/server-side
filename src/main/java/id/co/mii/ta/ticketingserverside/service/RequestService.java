@@ -71,9 +71,9 @@ public class RequestService {
         request.setGambar(data.getGambar());
         request.setStatus(statusService.getById(requestDTO.getStatus()));
         request.setFasilitasRuang(data.getFasilitasRuang());
-
+        
         request.setId(id);
-
+        
         return requestRepository.save(request);
     }
 
