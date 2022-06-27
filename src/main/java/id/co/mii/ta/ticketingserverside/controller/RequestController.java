@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/request")
-@PreAuthorize("hasAnyRole('ADMIN','ITSUPPORT')")
+//@PreAuthorize("hasAnyRole('ADMIN','ITSUPPORT')")
 public class RequestController {
 
     private RequestService requestService;
@@ -39,13 +39,13 @@ public class RequestController {
         this.requestService = requestService;
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @GetMapping
     public ResponseEntity<List<Request>> getAll() {
         return new ResponseEntity(requestService.getAll(), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @GetMapping("/{id}")
     public ResponseEntity<Request> getById(@PathVariable Integer id) {
         return new ResponseEntity(requestService.getById(id), HttpStatus.OK);
@@ -57,24 +57,24 @@ public class RequestController {
         return new ResponseEntity(requestService.create(requestDTO), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @PostMapping("/{id}")
     public ResponseEntity<Request> update(@PathVariable("id") Integer id, @RequestBody RequestDTO requestDTO) {
         return new ResponseEntity(requestService.update(id, requestDTO), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Request> delete(@PathVariable Integer id) {
         return new ResponseEntity(requestService.delete(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @GetMapping("/approved")
     public ResponseEntity<List<Request>> getByApproval() {
         return new ResponseEntity(requestService.getByApproved(), HttpStatus.OK);
     }
-    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @GetMapping("/approvedadmin")
     public ResponseEntity<List<Request>> getByApprovaladmin() {
         return new ResponseEntity(requestService.getByApprovedadmin(), HttpStatus.OK);

@@ -37,31 +37,31 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
     
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @GetMapping
     public ResponseEntity<List<Employee>> getAll() {
         return new ResponseEntity(employeeService.getAll(), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getById(@PathVariable Integer id) {
         return new ResponseEntity(employeeService.getById(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @PostMapping
     public ResponseEntity<Employee> create(@RequestBody EmployeeRequest employee) {
         return new ResponseEntity(employeeService.create(employee), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @PutMapping("/{id}")
     public ResponseEntity<Employee> update(@PathVariable Integer id, @RequestBody EmployeeRequest employee) {
         return new ResponseEntity(employeeService.update(id, employee), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Employee> delete(@PathVariable Integer id) {
         return new ResponseEntity(employeeService.delete(id), HttpStatus.OK);

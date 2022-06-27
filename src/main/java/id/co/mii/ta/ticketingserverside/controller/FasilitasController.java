@@ -35,31 +35,31 @@ public class FasilitasController {
         this.fasilitasService = fasilitasService;
     }
     
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @GetMapping
     public ResponseEntity<List<Fasilitas>> getAll() {
         return new ResponseEntity(fasilitasService.getAll(), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @GetMapping("/{id}")
     public ResponseEntity<Fasilitas> getById(@PathVariable Integer id) {
         return new ResponseEntity(fasilitasService.getById(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @PostMapping
     public ResponseEntity<Fasilitas> create(@RequestBody Fasilitas fasilitas) {
         return new ResponseEntity(fasilitasService.create(fasilitas), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @PutMapping("/{id}")
     public ResponseEntity<Fasilitas> update(@PathVariable("id") Integer id, @RequestBody Fasilitas fasilitas) {
         return new ResponseEntity(fasilitasService.update(id, fasilitas), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Fasilitas> delete(@PathVariable Integer id) {
         return new ResponseEntity(fasilitasService.delete(id), HttpStatus.OK);
