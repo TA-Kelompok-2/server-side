@@ -78,7 +78,8 @@ public class RequestService {
         History history = new History();
         history.setDate(requestDTO.getDate());
         history.setEmployee(data.getEmployee());
-        history.setKeterangan(data.getKeterangan());
+//        history.setKeterangan(data.getKeterangan());
+        history.setKeterangan(requestDTO.getKeterangan());
         history.setStatus(statusService.getById(requestDTO.getStatus()));
         history.setRequest(data);
         historyService.create(history);
