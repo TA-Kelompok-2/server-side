@@ -50,6 +50,12 @@ public class HistoryController {
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
+    @GetMapping("/request/{id}")
+    public ResponseEntity<List<History>> getByRequest(@PathVariable Integer id) {
+        return new ResponseEntity(historyService.getByRequest(id), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @PostMapping
     public ResponseEntity<History> create(@RequestBody History history) {
         return new ResponseEntity(historyService.create(history), HttpStatus.CREATED);

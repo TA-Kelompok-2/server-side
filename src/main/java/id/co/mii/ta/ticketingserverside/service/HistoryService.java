@@ -39,6 +39,10 @@ public class HistoryService {
         return historyRepository.findAll();
     }
 
+    public List<History> getByRequest(Integer id) {
+        return historyRepository.findByRequestId(id);
+    }
+
     public History getById(Integer id) {
         return historyRepository.findById(id).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "History Not Found"));
@@ -55,7 +59,7 @@ public class HistoryService {
         history.setEmployee(employeeService.getById(historyRequest.getEmployee()));
         history.setStatus(statusService.getById(historyRequest.getStatus()));
         history.setRequest(data.getRequest());
-  //      history.setId(id);
+        //      history.setId(id);
 
         return historyRepository.save(history);
     }
