@@ -69,15 +69,21 @@ public class RequestController {
         return new ResponseEntity(requestService.delete(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @GetMapping("/approved")
     public ResponseEntity<List<Request>> getByApproval() {
         return new ResponseEntity(requestService.getByApproved(), HttpStatus.OK);
     }
-    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
+
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
     @GetMapping("/approvedadmin")
     public ResponseEntity<List<Request>> getByApprovaladmin() {
         return new ResponseEntity(requestService.getByApprovedadmin(), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
+    @GetMapping("/approvedits")
+    public ResponseEntity<List<Request>> getByApprovalIts() {
+        return new ResponseEntity(requestService.getByApprovedIts(), HttpStatus.OK);
+    }
 }

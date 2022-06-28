@@ -100,5 +100,9 @@ public class RequestService {
     public List<Request> getByApprovedadmin() {
         return requestRepository.findByStatusIdadmin();
     }
+    
+        public List<Request> getByApprovedIts() {
+        return requestRepository.findByStatusIts();
+    }
 
 }
