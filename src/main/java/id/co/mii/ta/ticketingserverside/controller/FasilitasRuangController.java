@@ -6,6 +6,7 @@
 package id.co.mii.ta.ticketingserverside.controller;
 
 import id.co.mii.ta.ticketingserverside.model.FasilitasRuang;
+import id.co.mii.ta.ticketingserverside.model.dto.request.FasilitasDTO;
 import id.co.mii.ta.ticketingserverside.service.FasilitasRuangService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +49,9 @@ public class FasilitasRuangController {
         return new ResponseEntity(fasilitasRuangService.getById(id), HttpStatus.OK);
     }
 
-   @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
     @PostMapping
-    public ResponseEntity<FasilitasRuang> create(@RequestBody FasilitasRuang fasilitasRuang) {
+    public ResponseEntity<FasilitasRuang> create(@RequestBody FasilitasDTO fasilitasRuang) {
         return new ResponseEntity(fasilitasRuangService.create(fasilitasRuang), HttpStatus.CREATED);
     }
 

@@ -6,8 +6,11 @@
 package id.co.mii.ta.ticketingserverside.service;
 
 import id.co.mii.ta.ticketingserverside.model.FasilitasRuang;
+import id.co.mii.ta.ticketingserverside.model.dto.request.FasilitasDTO;
 import id.co.mii.ta.ticketingserverside.repository.FasilitasRuangRepository;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -18,14 +21,13 @@ import org.springframework.web.server.ResponseStatusException;
  * @author Mac
  */
 @Service
+@AllArgsConstructor
 public class FasilitasRuangService {
 
     private FasilitasRuangRepository fasilitasRuangRepository;
-
-    @Autowired
-    public FasilitasRuangService(FasilitasRuangRepository fasilitasRuangRepository) {
-        this.fasilitasRuangRepository = fasilitasRuangRepository;
-    }
+    private ModelMapper modelMapper;
+    private FasilitasService fasilitasService;
+    private RuangService ruangService;
 
     public List<FasilitasRuang> getAll() {
         return fasilitasRuangRepository.findAll();
@@ -36,7 +38,10 @@ public class FasilitasRuangService {
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Status Not Found"));
     }
 
-    public FasilitasRuang create(FasilitasRuang fasilitasRuang) {
+    public FasilitasRuang create(FasilitasDTO fasilitasDTO) {
+        FasilitasRuang fasilitasRuang = modelMapper.map(fasilitasDTO, FasilitasRuang.class);
+        fasilitasRuang.setRuang(ruangService.getById(fasilitasDTO.getRuang()));
+        fasilitasRuang.setFasilitas(fasilitasService.getById(fasilitasDTO.getFasilitas()));
         return fasilitasRuangRepository.save(fasilitasRuang);
     }
 
