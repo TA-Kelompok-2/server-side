@@ -67,11 +67,25 @@ public class EmployeeService {
     }
 
     public Employee update(Integer id, EmployeeRequest employeeRequest) {
+        Employee data = getById(id);
+        User data2 = userService.getById(id);
+        
         Employee employee = modelMapper.map(employeeRequest, Employee.class);
         User user = modelMapper.map(employeeRequest, User.class);
+        //Set employee 
+        employee.setEmail(data.getEmail());
+        employee.setName(data.getName());
+        employee.setPhoneNumber(data.getPhoneNumber());
+        
+        //Set user
+        user.setUsername(data2.getUsername());
+        user.setPassword(data2.getPassword());
+        
         employee.setId(id);
         user.setId(id);
-
+        List<Role> role = userService.getById(id).getRoles();
+        role.add(roleService.getById(employeeRequest.getRoles()));
+        user.setRoles(role); 
         user.setEmployee(employee);
         employee.setUser(user);
         return employeeRepository.save(employee);
