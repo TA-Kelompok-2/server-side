@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,15 @@ public class Request {
     private Integer id;
     private String keterangan;
     private String gambar;
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (gambar == null || id == null) {
+            return null;
+        }
+
+        return "/request-photos/" + id + "/" + gambar;
+    }
     private LocalDateTime date;
 
     @ManyToOne
@@ -49,7 +59,7 @@ public class Request {
     @ManyToOne
     @JoinColumn(name = "fasilitas_ruang_id")
     private FasilitasRuang fasilitasRuang;
-    
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "request")
     private List<History> history;
