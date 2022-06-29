@@ -102,9 +102,21 @@ public class RequestService {
     public List<Request> getByApprovedadmin() {
         return requestRepository.findByStatusIdadmin();
     }
-    
-        public List<Request> getByApprovedIts() {
+
+    public List<Request> getByApprovedIts() {
         return requestRepository.findByStatusIts();
+    }
+
+    public List<Request> getByDTOA() {
+        return requestRepository.findByDTOA();
+    }
+
+    public List<Request> getByDTOITS() {
+        return requestRepository.findByDTOITS();
+    }
+
+    public List<Request> getByS() {
+        return requestRepository.findByS();
     }
 
 }

@@ -18,15 +18,23 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Integer> {
 
-    // JPQL by Entity in CLASS
-    @Query(value = "SELECT e FROM Request e WHERE e.status.id=2")
-    List<Request> findByStatusId();
-    // JPQL by Entity in CLASS
+    // Diajukan
     @Query(value = "SELECT e FROM Request e WHERE e.status.id=1")
     List<Request> findByStatusIdadmin();
     
-        // JPQL by Entity in CLASS
+    // Disetujui 
+    @Query(value = "SELECT e FROM Request e WHERE e.status.id=2")
+    List<Request> findByStatusId();
     @Query(value = "SELECT e FROM Request e WHERE e.status.id=6")
     List<Request> findByStatusIts();
-
+    
+    //Ditolak
+    @Query(value = "SELECT e FROM Request e WHERE e.status.id=3")
+    List<Request> findByDTOA();
+    @Query(value = "SELECT e FROM Request e WHERE e.status.id=7")
+    List<Request> findByDTOITS();
+    
+    // Selesai
+    @Query(value = "SELECT e FROM Request e WHERE e.status.id=5")
+    List<Request> findByS();
 }

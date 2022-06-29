@@ -69,21 +69,38 @@ public class RequestController {
         return new ResponseEntity(requestService.delete(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @GetMapping("/approved")
     public ResponseEntity<List<Request>> getByApproval() {
         return new ResponseEntity(requestService.getByApproved(), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @GetMapping("/approvedadmin")
     public ResponseEntity<List<Request>> getByApprovaladmin() {
         return new ResponseEntity(requestService.getByApprovedadmin(), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
     @GetMapping("/approvedits")
     public ResponseEntity<List<Request>> getByApprovalIts() {
         return new ResponseEntity(requestService.getByApprovedIts(), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
+    @GetMapping("/approvedDTOA")
+    public ResponseEntity<List<Request>> getByDTOA() {
+        return new ResponseEntity(requestService.getByDTOA(), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
+    @GetMapping("/approvedDTOITS")
+    public ResponseEntity<List<Request>> getByDTOITS() {
+        return new ResponseEntity(requestService.getByDTOITS(), HttpStatus.OK);
+    }
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
+    @GetMapping("/approvedS")
+    public ResponseEntity<List<Request>> getByS() {
+        return new ResponseEntity(requestService.getByS(), HttpStatus.OK);
     }
 }
