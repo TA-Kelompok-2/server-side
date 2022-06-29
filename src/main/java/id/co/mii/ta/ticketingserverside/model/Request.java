@@ -38,14 +38,6 @@ public class Request {
     private String keterangan;
     private String gambar;
 
-    @Transient
-    public String getPhotosImagePath() {
-        if (gambar == null || id == null) {
-            return null;
-        }
-
-        return "/request-photos/" + id + "/" + gambar;
-    }
     private LocalDateTime date;
 
     @ManyToOne

@@ -24,4 +24,5 @@ public class RequestDTO {
     private Integer employee;
     private Integer status;
     private Integer fasilitasruang;
+    private Integer picid;
 }

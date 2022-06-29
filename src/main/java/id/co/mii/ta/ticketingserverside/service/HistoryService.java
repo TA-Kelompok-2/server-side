@@ -58,6 +58,7 @@ public class HistoryService {
         History history = modelMapper.map(historyRequest, History.class);
         history.setEmployee(employeeService.getById(historyRequest.getEmployee()));
         history.setStatus(statusService.getById(historyRequest.getStatus()));
+        history.setPicid(historyRequest.getPicid());
         history.setRequest(data.getRequest());
         //      history.setId(id);
 
