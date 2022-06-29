@@ -55,6 +55,7 @@ public class RequestService {
         history.setDate(requestDTO.getDate());
         history.setEmployee(employeeService.getById(requestDTO.getEmployee()));
         history.setKeterangan(requestDTO.getKeterangan());
+        history.setPicName(requestDTO.getPicName());
         history.setStatus(statusService.getById(1));
         history.setRequest(req);
         historyService.create(history);
@@ -78,7 +79,7 @@ public class RequestService {
         History history = new History();
         history.setDate(requestDTO.getDate());
         history.setEmployee(data.getEmployee());
-        history.setPicid(requestDTO.getPicid());
+        history.setPicName(requestDTO.getPicName());
 //        history.setKeterangan(data.getKeterangan());
         history.setKeterangan(requestDTO.getKeterangan());
         history.setStatus(statusService.getById(requestDTO.getStatus()));

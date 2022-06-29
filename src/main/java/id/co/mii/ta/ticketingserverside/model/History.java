@@ -34,7 +34,7 @@ public class History {
     private Integer id;
     private String keterangan;
     private LocalDateTime date;
-    private Integer picid;
+    private String picName;
 
     @ManyToOne
     @JoinColumn(name = "request_id")
