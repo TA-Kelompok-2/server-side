@@ -28,6 +28,7 @@ public class UserController {
 
     UserService userService;
 
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
     @GetMapping("/{username}")
     public ResponseEntity<User> getIdByUsername(@PathVariable String username) {
         return new ResponseEntity(userService.getIdByUsername(username), HttpStatus.OK);
