@@ -50,6 +50,12 @@ public class FasilitasRuangController {
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
+    @GetMapping("/ruang/{id}")
+    public ResponseEntity<List<FasilitasRuang>> getByRuang(@PathVariable Integer id) {
+        return new ResponseEntity(fasilitasRuangService.getByRuang(id), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER','ITSUPPORT')")
     @PostMapping
     public ResponseEntity<FasilitasRuang> create(@RequestBody FasilitasDTO fasilitasRuang) {
         return new ResponseEntity(fasilitasRuangService.create(fasilitasRuang), HttpStatus.CREATED);

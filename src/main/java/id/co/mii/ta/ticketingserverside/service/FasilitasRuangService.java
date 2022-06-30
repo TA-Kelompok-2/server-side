@@ -38,6 +38,10 @@ public class FasilitasRuangService {
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Status Not Found"));
     }
 
+    public List<FasilitasRuang> getByRuang(Integer id) {
+        return fasilitasRuangRepository.findByRuang(id);
+    }
+
     public FasilitasRuang create(FasilitasDTO fasilitasDTO) {
         FasilitasRuang fasilitasRuang = modelMapper.map(fasilitasDTO, FasilitasRuang.class);
         fasilitasRuang.setRuang(ruangService.getById(fasilitasDTO.getRuang()));
