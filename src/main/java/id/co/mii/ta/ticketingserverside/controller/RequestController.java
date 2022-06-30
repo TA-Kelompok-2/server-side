@@ -103,4 +103,19 @@ public class RequestController {
     public ResponseEntity<List<Request>> getByS() {
         return new ResponseEntity(requestService.getByS(), HttpStatus.OK);
     }
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
+    @GetMapping("/approvedPYT")
+    public ResponseEntity<List<Request>> getByPYT() {
+        return new ResponseEntity(requestService.getByPYT(), HttpStatus.OK);
+    }
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
+    @GetMapping("/approvedKPT")
+    public ResponseEntity<List<Request>> getByKPT() {
+        return new ResponseEntity(requestService.getByKPT(), HttpStatus.OK);
+    }
+    @PreAuthorize("hasAnyAuthority('ADMIN','ITSUPPORT','USER')")
+    @GetMapping("/approvedAC")
+    public ResponseEntity<List<Request>> getByAC() {
+        return new ResponseEntity(requestService.getByAC(), HttpStatus.OK);
+    }
 }

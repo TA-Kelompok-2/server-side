@@ -37,4 +37,13 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
     // Selesai
     @Query(value = "SELECT e FROM Request e WHERE e.status.id=5")
     List<Request> findByS();
+    
+    // fasilitas id 1
+    @Query(value = "SELECT e FROM Request e WHERE e.fasilitasRuang.fasilitas.id=1")
+    List<Request> findByPYT();
+    @Query(value = "SELECT e FROM Request e WHERE e.fasilitasRuang.fasilitas.id=2")
+    List<Request> findByKPT();
+    @Query(value = "SELECT e FROM Request e WHERE e.fasilitasRuang.fasilitas.id=3")
+    List<Request> findByAC();
+    
 }

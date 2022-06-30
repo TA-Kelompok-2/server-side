@@ -118,5 +118,14 @@ public class RequestService {
     public List<Request> getByS() {
         return requestRepository.findByS();
     }
+    public List<Request> getByPYT() {
+        return requestRepository.findByPYT();
+    }
+    public List<Request> getByKPT() {
+        return requestRepository.findByKPT();
+    }
+    public List<Request> getByAC() {
+        return requestRepository.findByAC();
+    }
 
 }
